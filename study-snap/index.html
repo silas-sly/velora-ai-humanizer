@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velora AI Humanizer - Free AI Text Rewriter</title>
+  <meta name="description" content="Velora AI Humanizer rewrites AI text into clearer, more natural writing. Free online AI humanizer for emails, captions, bios, and everyday writing.">
+  <meta name="keywords" content="AI humanizer, humanize AI text, AI text rewriter, rewrite AI writing, free AI humanizer tool">
+  <meta name="author" content="Velora">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:title" content="Velora AI Humanizer - Free AI Text Rewriter">
+  <meta property="og:description" content="Free AI humanizer tool to make writing sound more natural, clear, and readable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Velora AI Humanizer - Free AI Text Rewriter">
+  <meta name="twitter:description" content="Humanize AI text for free with a clean and simple rewriting tool.">
+  <link rel="canonical" href="https://example.com/">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+  <!-- Replace placeholder URLs above with your final domain after deploy -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Velora AI Humanizer",
+    "applicationCategory": "WritingApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "A free AI humanizer tool for rewriting text into natural, clear writing."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Velora</a>
+      <nav class="nav">
+        <a href="#tool">AI Humanizer</a>
+        <a href="#seo-content">Guide</a>
+        <a href="#sponsor">Sponsor</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="hero-badge">Free AI humanizer tool</p>
+        <h1>Velora AI Humanizer</h1>
+        <p class="hero-sub">Turn robotic text into natural writing. Clean up tone, improve readability, and get polished wording in one click.</p>
+        <div class="hero-actions">
+          <a href="#tool" class="btn btn-primary">Try AI Humanizer</a>
+          <a href="#sponsor" class="btn btn-secondary">Sponsor Slot</a>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sponsor-banner container" id="top-sponsor" aria-label="Sponsor">
+      <div class="sponsor-placeholder">
+        <span class="sponsor-label">Featured sponsor (available)</span>
+        <p>Promote your page here for $10 / 14 days. <a href="#sponsor">Book a slot</a></p>
+      </div>
+    </aside>
+
+    <section class="tool-section" id="tool">
+      <div class="container">
+        <div class="tool-header">
+          <span class="tool-icon" aria-hidden="true">✨</span>
+          <div>
+            <h2>AI Humanizer: Rewrite Text Naturally</h2>
+            <p>Paste your draft, choose your tone, and get cleaner, human-sounding output.</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <form id="humanizer-form" class="rewrite-form" novalidate>
+            <label for="input-text">
+              Input text
+              <span class="hint">Paste up to 3000 characters</span>
+            </label>
+            <textarea id="input-text" maxlength="3000" placeholder="Paste AI text or rough draft here..." required></textarea>
+
+            <div class="control-grid">
+              <div class="form-row">
+                <label for="tone">Tone</label>
+                <select id="tone">
+                  <option value="natural">Natural</option>
+                  <option value="friendly">Friendly</option>
+                  <option value="professional">Professional</option>
+                  <option value="concise">Concise</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="length">Length</label>
+                <select id="length">
+                  <option value="same">Keep similar length</option>
+                  <option value="shorter">Make it shorter</option>
+                  <option value="longer">Add detail</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="readability">Readability</label>
+                <select id="readability">
+                  <option value="simple">Simple and clear</option>
+                  <option value="balanced">Balanced</option>
+                  <option value="advanced">More polished</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tool-buttons">
+              <button type="submit" class="btn btn-primary">Humanize Text</button>
+              <button type="button" id="clear-btn" class="btn btn-secondary">Clear</button>
+            </div>
+          </form>
+
+          <p class="safety-note"><strong>Safe use:</strong> use this to improve clarity and tone. Do not use it to cheat, mislead, or bypass school policies.</p>
+          <p id="tool-error" class="tool-error hidden" role="alert"></p>
+
+          <div id="output-wrap" class="output-wrap hidden">
+            <div class="result-head">
+              <h3>Humanized result</h3>
+              <button id="copy-btn" type="button" class="btn btn-secondary">Copy Result</button>
+            </div>
+            <textarea id="output-text" readonly></textarea>
+            <div class="result-meta">
+              <span id="meta-words">0 words</span>
+              <span id="meta-characters">0 characters</span>
+              <span id="meta-reading">0 min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-content" id="seo-content">
+      <div class="container">
+        <h2>What is an AI humanizer?</h2>
+        <p>An AI humanizer rewrites text so it sounds less robotic and easier to read. Velora focuses on clean sentence flow, better tone, and clearer wording for everyday writing.</p>
+        <h3>Best uses for an AI humanizer</h3>
+        <ul>
+          <li>Rewrite rough drafts into natural emails or messages</li>
+          <li>Improve social captions, bios, and short posts</li>
+          <li>Polish product descriptions and landing page copy</li>
+          <li>Simplify complicated writing for better readability</li>
+        </ul>
+        <h3>What Velora does not do</h3>
+        <p>Velora is not built to bypass plagiarism checks or school rules. It is a writing clarity tool for responsible use.</p>
+      </div>
+    </section>
+
+    <section class="sponsor-section" id="sponsor">
+      <div class="container">
+        <h2>Sponsor Velora</h2>
+        <p class="sponsor-intro">Get your project in front of writing-tool users. Two sponsor slots are available at $10 each for 14 days.</p>
+        <div class="sponsor-grid">
+          <article class="sponsor-card">
+            <h3>Slot A</h3>
+            <p>Top banner placement on this page.</p>
+            <p class="price">$10 / 14 days</p>
+          </article>
+          <article class="sponsor-card">
+            <h3>Slot B</h3>
+            <p>Featured mention under tool results.</p>
+            <p class="price">$10 / 14 days</p>
+          </article>
+          <article class="sponsor-card sponsor-contact">
+            <h3>Book a slot</h3>
+            <p>Replace this email before launch:</p>
+            <a class="contact-email" href="mailto:your-email@example.com?subject=Velora%20Sponsorship">your-email@example.com</a>
+            <p class="contact-note">Use <code>SPONSOR-PITCH.md</code> for outreach copy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Velora AI Humanizer - free writing clarity tool.</p>
+      <p class="footer-note">Built for clean writing, responsible use, and fast iteration.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
