@@ -3,179 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TagMint — Free Username Generator (Not Cringe)</title>
-  <meta name="description" content="Generate clean, aesthetic, and gaming usernames that actually sound good. Free username generator for Discord, TikTok, Roblox, and more.">
-  <meta name="keywords" content="username generator, aesthetic username, gaming username, cool usernames, discord username generator">
+  <title>TagMint — username generator that doesn't suck</title>
+  <meta name="description" content="I got tired of cringe username generators so I built this. Free cool usernames for Discord, Roblox, TikTok, whatever.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://silas-sly.github.io/velora-ai-humanizer/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0e15;
-      --bg-alt: #111827;
-      --card: #171f2d;
-      --text: #ecf1f9;
-      --text-muted: #a3b2c9;
-      --primary: #6c7dff;
-      --primary-hover: #8b99ff;
-      --secondary: #2b364d;
-      --success: #22c55e;
-      --radius: 12px;
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      --bg: #0c0a12;
+      --card: rgba(22, 18, 35, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f4f0ff;
+      --text-muted: #a89ec4;
+      --mint: #5eead4;
+      --mint-dim: #2dd4bf;
+      --purple: #a78bfa;
+      --pink: #f472b6;
+      --radius: 14px;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-family: "Outfit", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(167, 139, 250, 0.25), transparent),
+        radial-gradient(ellipse 60% 40% at 90% 20%, rgba(244, 114, 182, 0.15), transparent),
+        radial-gradient(ellipse 50% 50% at 50% 100%, rgba(94, 234, 212, 0.12), transparent),
+        var(--bg);
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
     }
 
     .container {
-      width: min(720px, 92%);
+      width: min(680px, 92%);
       margin: 0 auto;
     }
 
-    a { color: var(--primary-hover); }
-
     .site-header {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1.5rem 0 0.5rem;
     }
 
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--mint), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero {
-      padding: 2.5rem 0 1.5rem;
+      padding: 2rem 0 1.75rem;
       text-align: center;
     }
 
     .hero-badge {
       display: inline-block;
-      background: rgba(108, 125, 255, 0.15);
-      color: var(--primary-hover);
-      padding: 0.35rem 0.85rem;
+      background: rgba(94, 234, 212, 0.1);
+      border: 1px solid rgba(94, 234, 212, 0.25);
+      color: var(--mint);
+      padding: 0.4rem 1rem;
       border-radius: 999px;
       font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      margin: 0 0 0.75rem;
-      letter-spacing: -0.03em;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      margin: 0 0 0.85rem;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      line-height: 1.1;
     }
 
     .hero-sub {
       color: var(--text-muted);
       margin: 0 auto;
-      max-width: 480px;
+      max-width: 420px;
+      font-size: 1.05rem;
+      font-weight: 400;
     }
 
     .tool-card {
       background: var(--card);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.75rem;
       margin-bottom: 2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
     }
 
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.85rem;
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 0 0 0.65rem;
+    }
+
+    .style-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
       margin-bottom: 1.25rem;
     }
 
-    label {
+    .chip {
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      color: var(--text);
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.2), rgba(167, 139, 250, 0.2));
+      border-color: var(--mint);
+      color: var(--text);
+    }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    label.field {
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
-      font-size: 0.9rem;
+      gap: 0.35rem;
+      font-size: 0.85rem;
       font-weight: 600;
+      color: var(--text-muted);
     }
 
     select {
-      padding: 0.65rem 0.75rem;
+      padding: 0.7rem 0.85rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: var(--bg);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
       color: var(--text);
+      font-family: inherit;
       font-size: 0.95rem;
+      cursor: pointer;
     }
 
     select:focus {
-      outline: 2px solid var(--primary);
+      outline: 2px solid var(--purple);
       outline-offset: 2px;
     }
 
     .toggle-row {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      gap: 0.55rem;
+      margin-bottom: 1.35rem;
       color: var(--text-muted);
       font-size: 0.9rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
       cursor: pointer;
-      transition: background 0.15s, transform 0.1s;
     }
 
-    .btn:active { transform: scale(0.98); }
+    .toggle-row input {
+      accent-color: var(--mint);
+      width: 1rem;
+      height: 1rem;
+    }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
+    .btn-generate {
       width: 100%;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #0c0a12;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--mint), var(--mint-dim));
+      box-shadow: 0 4px 20px rgba(94, 234, 212, 0.35);
+      transition: transform 0.15s, box-shadow 0.2s;
     }
 
-    .btn-primary:hover { background: var(--primary-hover); }
-
-    .btn-copy {
-      background: var(--secondary);
-      color: var(--text);
-      padding: 0.4rem 0.75rem;
-      font-size: 0.8rem;
-      border-radius: 8px;
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(94, 234, 212, 0.45);
     }
 
-    .btn-copy:hover { background: #475569; }
+    .btn-generate:active {
+      transform: translateY(0) scale(0.98);
+    }
 
     .results-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin: 1.5rem 0 0.75rem;
+      align-items: baseline;
+      margin: 1.75rem 0 0.85rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .results-head h2 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-weight: 600;
     }
 
     .results-hint {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
@@ -185,7 +261,7 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
     .username-item {
@@ -193,37 +269,94 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      background: var(--bg);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .username-item:hover {
+      border-color: rgba(167, 139, 250, 0.25);
+      background: rgba(167, 139, 250, 0.06);
     }
 
     .username-text {
-      font-family: ui-monospace, "Cascadia Code", monospace;
-      font-size: 1rem;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: 0.01em;
+      color: var(--mint);
     }
 
-    .seo-block {
-      background: var(--bg-alt);
-      padding: 2rem 0 3rem;
+    .btn-copy {
+      padding: 0.45rem 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
     }
 
-    .seo-block h2 { margin-top: 0; font-size: 1.25rem; }
-    .seo-block p, .seo-block li { color: var(--text-muted); font-size: 0.95rem; }
+    .btn-copy:hover {
+      background: rgba(94, 234, 212, 0.15);
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+
+    .about-block {
+      padding: 0 0 3rem;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .about-card h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .about-card p {
+      margin: 0 0 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
 
     .site-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 1.5rem 0;
+      padding: 1.5rem 0 2.5rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
     }
+
+    .site-footer span {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      .controls-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container">
       <a href="#" class="logo">TagMint</a>
@@ -232,68 +365,71 @@
 
   <main class="container">
     <section class="hero">
-      <p class="hero-badge">Actually good usernames</p>
-      <h1>Username Generator</h1>
-      <p class="hero-sub">Short, punchy handles that sound like real usernames — not xX_DarkLord420 energy.</p>
+      <p class="hero-badge">free · no signup · no cringe</p>
+      <h1>need a username?</h1>
+      <p class="hero-sub">I got sick of generators giving me stuff like xX_DarkSlayer99 so I built this. click the button til something hits.</p>
     </section>
 
     <section class="tool-card">
-      <div class="controls">
-        <label>
-          Style
-          <select id="style">
-            <option value="clean">Clean &amp; minimal</option>
-            <option value="aesthetic">Aesthetic</option>
-            <option value="gaming">Gaming</option>
-            <option value="soft">Soft / cozy</option>
-            <option value="bold">Bold but tasteful</option>
-          </select>
-        </label>
-        <label>
-          Length
+      <p class="section-label">pick a vibe</p>
+      <div class="style-chips" id="style-chips">
+        <button type="button" class="chip active" data-style="gaming">🎮 gaming</button>
+        <button type="button" class="chip" data-style="aesthetic">✨ aesthetic</button>
+        <button type="button" class="chip" data-style="clean">🧊 clean</button>
+        <button type="button" class="chip" data-style="soft">☁️ soft</button>
+        <button type="button" class="chip" data-style="bold">⚡ bold</button>
+      </div>
+
+      <div class="controls-row">
+        <label class="field">
+          length
           <select id="length">
-            <option value="short">Short (4–8)</option>
-            <option value="medium" selected>Medium (8–14)</option>
+            <option value="short">short</option>
+            <option value="medium" selected>medium</option>
           </select>
         </label>
-        <label>
-          Separator
+        <label class="field">
+          separator
           <select id="separator">
-            <option value="none">None</option>
-            <option value="dot">Dot (.)</option>
-            <option value="underscore">Underscore (_)</option>
+            <option value="none">none</option>
+            <option value="dot">dot ·</option>
+            <option value="underscore">underscore _</option>
           </select>
         </label>
       </div>
 
       <label class="toggle-row">
         <input type="checkbox" id="numbers">
-        Add subtle numbers (optional)
+        throw numbers on some (optional)
       </label>
 
-      <button type="button" class="btn btn-primary" id="generate-btn">Generate Usernames</button>
+      <button type="button" class="btn-generate" id="generate-btn">✨ gimme names</button>
 
       <div class="results-head">
-        <h2>Your picks</h2>
-        <span class="results-hint">Tap copy to use one</span>
+        <h2>here ya go</h2>
+        <span class="results-hint">tap copy → paste it</span>
       </div>
       <ul class="username-list" id="username-list"></ul>
     </section>
 
-    <section class="seo-block">
-      <h2>How TagMint picks names</h2>
-      <p>We use curated word lists and clean patterns — not random edgy combos. Good usernames are short, easy to say, and memorable.</p>
-      <ul>
-        <li><strong>Clean:</strong> simple one-word or two-word combos</li>
-        <li><strong>Aesthetic:</strong> lowercase, soft imagery, calm vibes</li>
-        <li><strong>Gaming:</strong> punchy invented names that fit Roblox, Discord, etc.</li>
-      </ul>
+    <section class="about-block">
+      <div class="about-card">
+        <h2>why does this exist</h2>
+        <p>every username site gives the same trash. dark shadow killer 420 type beat. nah.</p>
+        <p>I wanted names that actually sound cool for discord / roblox / tiktok / whatever. so I made a list of words that don't make you cringe and mixed them up.</p>
+        <p>if you get a bad one just hit the button again lol. that's the whole thing.</p>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">TagMint — free username generator. Refresh for new ideas.</div>
+    <div class="container">
+      tagmint · built bc I needed a name at like 1am<br>
+      <span>refresh = new batch. share if your friends need one too</span>
+    </div>
   </footer>
+
+  <input type="hidden" id="style" value="gaming">
 
   <script>
     const CRINGE = /dark|shadow|killer|epic|ninja|dragon|lord|blood|death|savage|toxic|demon|xx|420|pro gamer|cringe|uwu|owo/i;
@@ -370,12 +506,8 @@
 
     function pronounceableTag() {
       const pattern = Math.random();
-      if (pattern < 0.4) {
-        return pick(onsets) + pick(nuclei) + pick(codas);
-      }
-      if (pattern < 0.7) {
-        return pick(onsets) + pick(nuclei) + pick(codas) + pick(nuclei) + pick(codas);
-      }
+      if (pattern < 0.4) return pick(onsets) + pick(nuclei) + pick(codas);
+      if (pattern < 0.7) return pick(onsets) + pick(nuclei) + pick(codas) + pick(nuclei) + pick(codas);
       return pick(premium.gaming);
     }
 
@@ -383,33 +515,25 @@
       let name = "";
       const roll = Math.random();
 
-      if (roll < 0.35) {
-        name = pick(premium[style] || premium.clean);
-      } else if (roll < 0.55) {
-        name = pick(handPicked[style] || handPicked.clean);
-      } else if (roll < 0.75) {
+      if (roll < 0.35) name = pick(premium[style] || premium.clean);
+      else if (roll < 0.55) name = pick(handPicked[style] || handPicked.clean);
+      else if (roll < 0.75) {
         const a = pick(roots[style] || roots.clean);
         const b = pick(tails[style] || tails.clean);
         name = separator === "none" && Math.random() < 0.4 ? blend(a, b) : joinParts(a, b, separator);
-      } else if (style === "gaming") {
-        name = pronounceableTag();
-      } else {
+      } else if (style === "gaming") name = pronounceableTag();
+      else {
         const a = pick(roots[style] || roots.clean);
         const b = pick(tails[style] || tails.clean);
         name = joinParts(a, b, separator);
       }
 
-      if (length === "short" && name.length > 9) {
-        name = name.slice(0, 7);
-      }
-
+      if (length === "short" && name.length > 9) name = name.slice(0, 7);
       name = formatName(name, style);
-
       if (useNumbers) {
         const num = subtleNumber();
         if (num) name += num;
       }
-
       return name;
     }
 
@@ -429,7 +553,7 @@
       list.innerHTML = names.map((name) => `
         <li class="username-item">
           <span class="username-text">${name}</span>
-          <button type="button" class="btn btn-copy" data-copy="${name}">Copy</button>
+          <button type="button" class="btn-copy" data-copy="${name}">copy</button>
         </li>
       `).join("");
 
@@ -438,10 +562,10 @@
           const text = btn.dataset.copy;
           try {
             await navigator.clipboard.writeText(text);
-            btn.textContent = "Copied!";
-            setTimeout(() => { btn.textContent = "Copy"; }, 1200);
+            btn.textContent = "got it ✓";
+            setTimeout(() => { btn.textContent = "copy"; }, 1400);
           } catch {
-            btn.textContent = "Select & copy";
+            btn.textContent = "copy manually";
           }
         });
       });
@@ -452,11 +576,20 @@
       const length = document.getElementById("length").value;
       const separator = document.getElementById("separator").value;
       const useNumbers = document.getElementById("numbers").checked;
-      const names = generateBatch(8, style, length, separator, useNumbers);
-      renderUsernames(names);
+      renderUsernames(generateBatch(8, style, length, separator, useNumbers));
     }
 
     document.getElementById("generate-btn").addEventListener("click", runGenerate);
+
+    document.querySelectorAll(".chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        document.getElementById("style").value = chip.dataset.style;
+        runGenerate();
+      });
+    });
+
     runGenerate();
   </script>
 </body>
