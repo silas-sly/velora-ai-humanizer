@@ -63,9 +63,13 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .container,
+    .container {
+      width: min(760px, 92%);
+      margin: 0 auto;
+    }
+
     .container-wide {
-      width: min(480px, 94%);
+      width: min(960px, 92%);
       margin: 0 auto;
     }
 
@@ -100,7 +104,7 @@
     }
 
     .hero {
-      padding: 2.75rem 0 1.75rem;
+      padding: 3.5rem 0 2rem;
       text-align: center;
     }
 
@@ -115,8 +119,8 @@
     }
 
     .hero h1 {
-      font-size: 2rem;
-      line-height: 1.15;
+      font-size: clamp(2.25rem, 5vw, 3rem);
+      line-height: 1.1;
       letter-spacing: -0.04em;
       margin: 0 0 1rem;
       font-weight: 700;
@@ -124,18 +128,18 @@
 
     .hero-sub {
       margin: 0 auto;
-      max-width: 100%;
+      max-width: 520px;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .tool-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.35rem;
+      padding: 1.75rem;
       box-shadow: var(--shadow);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .field-label {
@@ -156,13 +160,13 @@
     }
 
     .chip {
-      padding: 0.5rem 0.85rem;
+      padding: 0.55rem 1rem;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text-muted);
       font-family: inherit;
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       font-weight: 500;
       cursor: pointer;
       transition: border-color 0.15s, color 0.15s, background 0.15s;
@@ -182,7 +186,7 @@
     .controls-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
+      gap: 1rem;
       margin-bottom: 1rem;
     }
 
@@ -230,7 +234,7 @@
 
     .btn-generate {
       width: 100%;
-      padding: 0.95rem 1.25rem;
+      padding: 0.95rem 1.5rem;
       border: none;
       border-radius: var(--radius);
       font-family: inherit;
@@ -252,9 +256,8 @@
 
     .results-head {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
+      justify-content: space-between;
+      align-items: baseline;
       margin: 1.75rem 0 0.85rem;
       padding-top: 1.5rem;
       border-top: 1px solid var(--border);
@@ -307,7 +310,7 @@
     }
 
     .exclusive-badge {
-      display: block;
+      display: inline-block;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.06em;
@@ -317,8 +320,8 @@
       border: 1px solid #bfdbfe;
       padding: 0.25rem 0.55rem;
       border-radius: 6px;
-      margin: 0.35rem 0 0;
-      width: fit-content;
+      margin-left: 0.5rem;
+      vertical-align: middle;
     }
 
     .username-list {
@@ -326,7 +329,7 @@
       margin: 0;
       padding: 0;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.5rem;
     }
 
@@ -349,7 +352,7 @@
 
     .username-text {
       font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
-      font-size: 0.875rem;
+      font-size: clamp(0.8rem, 2.5vw, 0.95rem);
       font-weight: 500;
       color: var(--text);
       overflow: hidden;
@@ -398,13 +401,13 @@
 
     .features-header p {
       margin: 0 auto;
-      max-width: 100%;
+      max-width: 540px;
       color: var(--text-muted);
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
     }
 
