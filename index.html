@@ -3,131 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TagMint — username generator that doesn't suck</title>
-  <meta name="description" content="Free username generator for Minecraft and Steam. TagMint makes new names every click — no cringe, no signup.">
+  <title>TagMint — Username Generator</title>
+  <meta name="description" content="Generate clean, original usernames in one click. Free, no signup. Built for gaming profiles, social accounts, and anywhere you need a handle.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://silas-sly.github.io/tagmint-ai-username/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111827'/><text x='50' y='68' font-size='52' font-family='system-ui' font-weight='700' fill='%23fff' text-anchor='middle'>T</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0c0a12;
-      --card: rgba(22, 18, 35, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f4f0ff;
-      --text-muted: #a89ec4;
-      --mint: #5eead4;
-      --mint-dim: #2dd4bf;
-      --purple: #a78bfa;
-      --pink: #f472b6;
-      --radius: 14px;
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface-alt: #eef1f6;
+      --text: #111827;
+      --text-muted: #5b6472;
+      --border: #e3e8ef;
+      --accent: #1d4ed8;
+      --accent-hover: #1e40af;
+      --accent-soft: #eff6ff;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.06);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .bg-glow {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(167, 139, 250, 0.25), transparent),
-        radial-gradient(ellipse 60% 40% at 90% 20%, rgba(244, 114, 182, 0.15), transparent),
-        radial-gradient(ellipse 50% 50% at 50% 100%, rgba(94, 234, 212, 0.12), transparent),
-        var(--bg);
-    }
-
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      width: min(680px, 92%);
+      width: min(760px, 92%);
+      margin: 0 auto;
+    }
+
+    .container-wide {
+      width: min(960px, 92%);
       margin: 0 auto;
     }
 
     .site-header {
-      padding: 1.5rem 0 0.5rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--mint), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    }
+
+    .header-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--surface-alt);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
     }
 
     .hero {
-      padding: 2rem 0 1.75rem;
+      padding: 3.5rem 0 2rem;
       text-align: center;
     }
 
-    .hero-badge {
+    .hero-label {
       display: inline-block;
-      background: rgba(94, 234, 212, 0.1);
-      border: 1px solid rgba(94, 234, 212, 0.25);
-      color: var(--mint);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 6vw, 2.75rem);
-      margin: 0 0 0.85rem;
-      letter-spacing: -0.04em;
-      font-weight: 700;
+      font-size: clamp(2.25rem, 5vw, 3rem);
       line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 0 0 1rem;
+      font-weight: 700;
     }
 
     .hero-sub {
-      color: var(--text-muted);
       margin: 0 auto;
-      max-width: 420px;
+      max-width: 520px;
+      color: var(--text-muted);
       font-size: 1.05rem;
-      font-weight: 400;
     }
 
     .tool-card {
-      background: var(--card);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       padding: 1.75rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
     }
 
-    .section-label {
+    .field-label {
+      display: block;
       font-size: 0.8rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
       color: var(--text-muted);
       margin: 0 0 0.65rem;
     }
@@ -136,54 +132,54 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .chip {
-      padding: 0.5rem 0.9rem;
+      padding: 0.55rem 1rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--text-muted);
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
     }
 
     .chip:hover {
-      border-color: rgba(167, 139, 250, 0.4);
+      border-color: #cbd5e1;
       color: var(--text);
     }
 
     .chip.active {
-      background: linear-gradient(135deg, rgba(94, 234, 212, 0.2), rgba(167, 139, 250, 0.2));
-      border-color: var(--mint);
-      color: var(--text);
+      background: var(--accent-soft);
+      border-color: #bfdbfe;
+      color: var(--accent);
     }
 
     .controls-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
+      gap: 1rem;
       margin-bottom: 1rem;
     }
 
     label.field {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
     }
 
     select {
       padding: 0.7rem 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
       color: var(--text);
       font-family: inherit;
       font-size: 0.95rem;
@@ -191,48 +187,47 @@
     }
 
     select:focus {
-      outline: 2px solid var(--purple);
-      outline-offset: 2px;
+      outline: 2px solid #bfdbfe;
+      outline-offset: 1px;
+      border-color: #93c5fd;
     }
 
     .toggle-row {
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      margin-bottom: 1.35rem;
+      margin-bottom: 1.5rem;
       color: var(--text-muted);
       font-size: 0.9rem;
       cursor: pointer;
     }
 
     .toggle-row input {
-      accent-color: var(--mint);
+      accent-color: var(--accent);
       width: 1rem;
       height: 1rem;
     }
 
     .btn-generate {
       width: 100%;
-      padding: 1rem 1.5rem;
+      padding: 0.95rem 1.5rem;
       border: none;
-      border-radius: 14px;
+      border-radius: var(--radius);
       font-family: inherit;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: #0c0a12;
+      color: #fff;
       cursor: pointer;
-      background: linear-gradient(135deg, var(--mint), var(--mint-dim));
-      box-shadow: 0 4px 20px rgba(94, 234, 212, 0.35);
-      transition: transform 0.15s, box-shadow 0.2s;
+      background: var(--accent);
+      transition: background 0.15s, transform 0.1s;
     }
 
     .btn-generate:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(94, 234, 212, 0.45);
+      background: var(--accent-hover);
     }
 
     .btn-generate:active {
-      transform: translateY(0) scale(0.98);
+      transform: scale(0.99);
     }
 
     .results-head {
@@ -240,18 +235,18 @@
       justify-content: space-between;
       align-items: baseline;
       margin: 1.75rem 0 0.85rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
     }
 
     .results-head h2 {
       margin: 0;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 600;
     }
 
     .results-hint {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
@@ -261,7 +256,7 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.55rem;
+      gap: 0.5rem;
     }
 
     .username-item {
@@ -269,33 +264,32 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 0.85rem 1rem;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.15s;
     }
 
     .username-item:hover {
-      border-color: rgba(167, 139, 250, 0.25);
-      background: rgba(167, 139, 250, 0.06);
+      border-color: #cbd5e1;
     }
 
     .username-text {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
       font-size: 0.95rem;
       font-weight: 500;
-      color: var(--mint);
+      color: var(--text);
     }
 
     .btn-copy {
       padding: 0.45rem 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--surface);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.15s;
@@ -303,161 +297,158 @@
     }
 
     .btn-copy:hover {
-      background: rgba(94, 234, 212, 0.15);
-      border-color: var(--mint);
-      color: var(--mint);
+      border-color: #93c5fd;
+      background: var(--accent-soft);
+      color: var(--accent);
     }
 
-    .about-block {
-      padding: 0 0 3rem;
+    .features {
+      padding-bottom: 3.5rem;
     }
 
-    .about-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 1.5rem;
+    .features-header {
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .about-card h2 {
-      margin: 0 0 0.65rem;
-      font-size: 1.1rem;
+    .features-header h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .features-header p {
+      margin: 0 auto;
+      max-width: 540px;
+      color: var(--text-muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
       font-weight: 600;
     }
 
-    .about-card p {
-      margin: 0 0 0.75rem;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .about-card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .why-list {
-      list-style: none;
+    .feature-card p {
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-    }
-
-    .why-list li {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
+      font-size: 0.875rem;
       color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .why-list li span:first-child {
-      flex-shrink: 0;
-    }
-
-    .why-list strong {
-      color: var(--text);
+      line-height: 1.55;
     }
 
     .site-footer {
-      padding: 1.5rem 0 2.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1.75rem 0;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.875rem;
     }
 
-    .site-footer span {
-      opacity: 0.7;
-    }
-
-    @media (max-width: 480px) {
-      .controls-row {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 540px) {
+      .controls-row { grid-template-columns: 1fr; }
+      .hero { padding-top: 2.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-glow" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
   <header class="site-header">
-    <div class="container">
+    <div class="container-wide header-inner">
       <a href="#" class="logo">TagMint</a>
+      <span class="header-tag">Free tool</span>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <p class="hero-badge">free · no signup · no cringe</p>
-      <h1>need a username?</h1>
-      <p class="hero-sub">I got sick of generators giving me stuff like xX_DarkSlayer99 so I built this. click the button til something hits.</p>
+  <main>
+    <section class="hero container">
+      <p class="hero-label">Username generator</p>
+      <h1>Find a handle worth keeping</h1>
+      <p class="hero-sub">Generate original usernames for profiles, games, and accounts. Clean results, no signup, no clutter.</p>
     </section>
 
-    <section class="tool-card">
-      <p class="section-label">pick a vibe</p>
+    <section class="tool-card container">
+      <p class="field-label">Style</p>
       <div class="style-chips" id="style-chips">
-        <button type="button" class="chip active" data-style="gaming">🎮 gaming</button>
-        <button type="button" class="chip" data-style="aesthetic">✨ aesthetic</button>
-        <button type="button" class="chip" data-style="clean">🧊 clean</button>
-        <button type="button" class="chip" data-style="soft">☁️ soft</button>
-        <button type="button" class="chip" data-style="bold">⚡ bold</button>
+        <button type="button" class="chip active" data-style="gaming">Gaming</button>
+        <button type="button" class="chip" data-style="aesthetic">Aesthetic</button>
+        <button type="button" class="chip" data-style="clean">Clean</button>
+        <button type="button" class="chip" data-style="soft">Soft</button>
+        <button type="button" class="chip" data-style="bold">Bold</button>
       </div>
 
       <div class="controls-row">
         <label class="field">
-          length
+          Length
           <select id="length">
-            <option value="short">short</option>
-            <option value="medium" selected>medium</option>
+            <option value="short">Short</option>
+            <option value="medium" selected>Medium</option>
           </select>
         </label>
         <label class="field">
-          separator
+          Separator
           <select id="separator">
-            <option value="none">none</option>
-            <option value="dot">dot ·</option>
-            <option value="underscore">underscore _</option>
+            <option value="none">None</option>
+            <option value="dot">Dot</option>
+            <option value="underscore">Underscore</option>
           </select>
         </label>
       </div>
 
       <label class="toggle-row">
         <input type="checkbox" id="numbers">
-        throw numbers on some (optional)
+        Include numbers on some results
       </label>
 
-      <button type="button" class="btn-generate" id="generate-btn">✨ gimme names</button>
+      <button type="button" class="btn-generate" id="generate-btn">Generate usernames</button>
 
       <div class="results-head">
-        <h2>here ya go</h2>
-        <span class="results-hint">tap copy → paste it</span>
+        <h2>Results</h2>
+        <span class="results-hint">Click copy to use</span>
       </div>
       <ul class="username-list" id="username-list"></ul>
     </section>
 
-    <section class="about-block">
-      <div class="about-card">
-        <h2>why tagmint over other generators?</h2>
-        <p>most username sites just shuffle the same edgy list. you get darkwolf99 five times in a row. cool.</p>
-        <ul class="why-list">
-          <li><span>✓</span><span><strong>actually makes new names</strong> — mixes syllables every click, not the same pool on repeat</span></li>
-          <li><span>✓</span><span><strong>cringe filter</strong> — blocks shadow/killer/dragon/xX type stuff automatically</span></li>
-          <li><span>✓</span><span><strong>pick your vibe</strong> — gaming, aesthetic, clean… not one random style for everyone</span></li>
-          <li><span>✓</span><span><strong>mc + steam friendly</strong> — short handles that fit minecraft java/bedrock and steam profiles</span></li>
-          <li><span>✓</span><span><strong>totally free</strong> — click, copy, done. no signup needed.</span></li>
-        </ul>
-        <p style="margin-top: 1rem;">bad batch? hit the button again. takes 2 seconds.</p>
+    <section class="features container-wide">
+      <div class="features-header">
+        <h2>Why use TagMint</h2>
+        <p>Most generators recycle the same list. TagMint builds new combinations every time you click generate.</p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card">
+          <h3>Original output</h3>
+          <p>Syllables and word parts are mixed on the fly so you get fresh handles, not the same names on repeat.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Quality filter</h3>
+          <p>Overused and low-quality patterns are blocked automatically so results stay clean and usable.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Style control</h3>
+          <p>Choose the tone that fits your profile — gaming, aesthetic, minimal, and more.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Ready anywhere</h3>
+          <p>Works for any platform that needs a username. Copy in one click and paste where you need it.</p>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      tagmint · free usernames for minecraft &amp; steam<br>
-      <span>made by a kid who was tired of cringe names · share if your friends need one</span>
-    </div>
+    <div class="container">TagMint — free username generator</div>
   </footer>
 
   <input type="hidden" id="style" value="gaming">
@@ -631,7 +622,7 @@
       list.innerHTML = names.map((name) => `
         <li class="username-item">
           <span class="username-text">${name}</span>
-          <button type="button" class="btn-copy" data-copy="${name}">copy</button>
+          <button type="button" class="btn-copy" data-copy="${name}">Copy</button>
         </li>
       `).join("");
 
@@ -640,10 +631,10 @@
           const text = btn.dataset.copy;
           try {
             await navigator.clipboard.writeText(text);
-            btn.textContent = "got it ✓";
-            setTimeout(() => { btn.textContent = "copy"; }, 1400);
+            btn.textContent = "Copied";
+            setTimeout(() => { btn.textContent = "Copy"; }, 1400);
           } catch {
-            btn.textContent = "copy manually";
+            btn.textContent = "Copy manually";
           }
         });
       });
