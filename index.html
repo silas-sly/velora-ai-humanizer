@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TagMint — username generator that doesn't suck</title>
-  <meta name="description" content="I got tired of cringe username generators so I built this. Free cool usernames for Discord, Roblox, TikTok, whatever.">
+  <meta name="description" content="Free username generator for Minecraft and Steam. TagMint makes new names every click — no cringe, no signup.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://silas-sly.github.io/tagmint-ai-username/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
@@ -335,6 +335,31 @@
       margin-bottom: 0;
     }
 
+    .why-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .why-list li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .why-list li span:first-child {
+      flex-shrink: 0;
+    }
+
+    .why-list strong {
+      color: var(--text);
+    }
+
     .site-footer {
       padding: 1.5rem 0 2.5rem;
       text-align: center;
@@ -500,10 +525,16 @@
 
     <section class="about-block">
       <div class="about-card">
-        <h2>why does this exist</h2>
-        <p>every username site gives the same trash. dark shadow killer 420 type beat. nah.</p>
-        <p>I wanted names that actually sound cool for discord / roblox / tiktok / whatever. so it mixes syllables and word chunks together to make new ones every click.</p>
-        <p>if you get a bad one just hit the button again lol. it actually mixes up new combos every time — not the same list on shuffle.</p>
+        <h2>why tagmint over other generators?</h2>
+        <p>most username sites just shuffle the same edgy list. you get darkwolf99 five times in a row. cool.</p>
+        <ul class="why-list">
+          <li><span>✓</span><span><strong>actually makes new names</strong> — mixes syllables every click, not the same pool on repeat</span></li>
+          <li><span>✓</span><span><strong>cringe filter</strong> — blocks shadow/killer/dragon/xX type stuff automatically</span></li>
+          <li><span>✓</span><span><strong>pick your vibe</strong> — gaming, aesthetic, clean… not one random style for everyone</span></li>
+          <li><span>✓</span><span><strong>mc + steam friendly</strong> — short handles that fit minecraft java/bedrock and steam profiles</span></li>
+          <li><span>✓</span><span><strong>no signup, no paywall</strong> — click, copy, done. that's it.</span></li>
+        </ul>
+        <p style="margin-top: 1rem;">bad batch? hit the button again. takes 2 seconds.</p>
       </div>
     </section>
 
@@ -516,7 +547,7 @@
         </article>
         <article class="support-card">
           <h2>📢 sponsor a spot</h2>
-          <p>got a discord server, shop, or project? i'll put your link on this page.</p>
+          <p>got a minecraft server, shop, or project? i'll put your link on this page.</p>
           <p class="price">$10 · 14 days</p>
           <a class="btn-support" href="mailto:tagmint76@gmail.com?subject=TagMint%20Sponsor">email me</a>
         </article>
@@ -532,8 +563,8 @@
 
   <footer class="site-footer">
     <div class="container">
-      tagmint · built bc I needed a name at like 1am<br>
-      <span>refresh = new batch. share if your friends need one too</span>
+      tagmint · free usernames for minecraft &amp; steam<br>
+      <span>made by a kid who was tired of cringe names · share if your friends need one</span>
     </div>
   </footer>
 
