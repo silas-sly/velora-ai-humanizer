@@ -3,14 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TagMint — Username Generator</title>
-  <meta name="description" content="Generate clean, original usernames in one click. Free, no signup. Built for gaming profiles, social accounts, and anywhere you need a handle.">
-  <meta name="robots" content="index, follow">
+  <title>TagMint — Free Username Maker & Generator Online</title>
+  <meta name="description" content="TagMint is a free username maker and generator. Create cool, original usernames instantly with Seed Mode. No signup required.">
+  <meta name="keywords" content="username maker, username generator, username creator, cool username generator, aesthetic username generator, random username generator, free username maker">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:title" content="TagMint — Free Username Maker & Generator">
+  <meta property="og:description" content="Create original usernames in one click. Free username maker with Seed Mode.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://silas-sly.github.io/tagmint-ai-username/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TagMint — Free Username Maker">
+  <meta name="twitter:description" content="Generate cool, original usernames for free.">
   <link rel="canonical" href="https://silas-sly.github.io/tagmint-ai-username/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111827'/><text x='50' y='68' font-size='52' font-family='system-ui' font-weight='700' fill='%23fff' text-anchor='middle'>T</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TagMint Username Maker",
+    "url": "https://silas-sly.github.io/tagmint-ai-username/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free online username maker and generator with Seed Mode for custom name ideas."
+  }
+  </script>
   <style>
     :root {
       --bg: #f6f7f9;
@@ -250,12 +274,62 @@
       color: var(--text-muted);
     }
 
+    .seed-field {
+      margin-bottom: 1.25rem;
+    }
+
+    .seed-field label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .seed-field input {
+      padding: 0.7rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .seed-field input:focus {
+      outline: 2px solid #bfdbfe;
+      outline-offset: 1px;
+      border-color: #93c5fd;
+    }
+
+    .seed-hint {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .exclusive-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
     .username-list {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.5rem;
     }
 
@@ -263,11 +337,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.5rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 0.85rem 1rem;
+      padding: 0.75rem 0.85rem;
+      min-height: 48px;
       transition: border-color 0.15s;
     }
 
@@ -277,23 +352,30 @@
 
     .username-text {
       font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
-      font-size: 0.95rem;
+      font-size: clamp(0.8rem, 2.5vw, 0.95rem);
       font-weight: 500;
       color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+      flex: 1;
     }
 
     .btn-copy {
-      padding: 0.45rem 0.85rem;
+      padding: 0.45rem 0.7rem;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: var(--surface);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.15s;
       white-space: nowrap;
+      flex-shrink: 0;
+      min-height: 36px;
     }
 
     .btn-copy:hover {
@@ -349,6 +431,45 @@
       line-height: 1.55;
     }
 
+    .feature-card.feature-highlight {
+      border-color: #bfdbfe;
+      background: linear-gradient(180deg, #f8fbff 0%, var(--surface) 100%);
+    }
+
+    .seo-faq {
+      padding: 0 0 3rem;
+    }
+
+    .seo-faq-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+
+    .seo-faq h2 {
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .seo-faq h3 {
+      margin: 1.1rem 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .seo-faq h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .seo-faq p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
     .site-footer {
       border-top: 1px solid var(--border);
       background: var(--surface);
@@ -358,9 +479,57 @@
       font-size: 0.875rem;
     }
 
-    @media (max-width: 540px) {
-      .controls-row { grid-template-columns: 1fr; }
-      .hero { padding-top: 2.5rem; }
+    @media (max-width: 640px) {
+      .container,
+      .container-wide {
+        width: min(760px, 94%);
+      }
+
+      .hero {
+        padding: 2.75rem 0 1.75rem;
+      }
+
+      .tool-card {
+        padding: 1.35rem;
+        margin-bottom: 2rem;
+      }
+
+      .controls-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .chip {
+        padding: 0.5rem 0.85rem;
+        font-size: 0.8125rem;
+      }
+
+      .btn-generate {
+        padding: 0.95rem 1.25rem;
+        font-size: 1rem;
+      }
+
+      .results-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exclusive-badge {
+        display: block;
+        margin: 0.35rem 0 0;
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .username-list {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -374,15 +543,15 @@
 
   <main>
     <section class="hero container">
-      <p class="hero-label">Username generator</p>
-      <h1>Find a handle worth keeping</h1>
-      <p class="hero-sub">Generate original usernames for profiles, games, and accounts. Clean results, no signup, no clutter.</p>
+      <p class="hero-label">Free username maker</p>
+      <h1>Username generator — find a handle worth keeping</h1>
+      <p class="hero-sub">TagMint is a free username maker that creates original handles for any profile or account. No signup, no clutter.</p>
     </section>
 
     <section class="tool-card container">
       <p class="field-label">Style</p>
       <div class="style-chips" id="style-chips">
-        <button type="button" class="chip active" data-style="gaming">Gaming</button>
+        <button type="button" class="chip active" data-style="gaming">Punchy</button>
         <button type="button" class="chip" data-style="aesthetic">Aesthetic</button>
         <button type="button" class="chip" data-style="clean">Clean</button>
         <button type="button" class="chip" data-style="soft">Soft</button>
@@ -407,6 +576,13 @@
         </label>
       </div>
 
+      <div class="seed-field">
+        <label for="seed-word">
+          Seed word <span class="seed-hint">(optional — type a word you like and TagMint builds names around it)</span>
+        </label>
+        <input type="text" id="seed-word" maxlength="16" placeholder="e.g. river, nova, pixel" autocomplete="off">
+      </div>
+
       <label class="toggle-row">
         <input type="checkbox" id="numbers">
         Include numbers on some results
@@ -427,6 +603,10 @@
         <p>Most generators recycle the same list. TagMint builds new combinations every time you click generate.</p>
       </div>
       <div class="features-grid">
+        <article class="feature-card feature-highlight">
+          <h3>Seed Mode <span class="exclusive-badge">TagMint only</span></h3>
+          <p>Enter any word you like — a name, hobby, color, anything — and TagMint generates unique variations built around it. No other generator does this.</p>
+        </article>
         <article class="feature-card">
           <h3>Original output</h3>
           <p>Syllables and word parts are mixed on the fly so you get fresh handles, not the same names on repeat.</p>
@@ -437,18 +617,36 @@
         </article>
         <article class="feature-card">
           <h3>Style control</h3>
-          <p>Choose the tone that fits your profile — gaming, aesthetic, minimal, and more.</p>
+          <p>Choose the tone that fits you — punchy, aesthetic, minimal, soft, or bold.</p>
         </article>
         <article class="feature-card">
-          <h3>Ready anywhere</h3>
-          <p>Works for any platform that needs a username. Copy in one click and paste where you need it.</p>
+          <h3>16 per batch</h3>
+          <p>More options every click so you are not stuck refreshing other sites just to find one good name.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Works everywhere</h3>
+          <p>Any site or app that needs a username. Copy in one click and paste where you need it.</p>
         </article>
       </div>
+    </section>
+
+    <section class="seo-faq container-wide">
+      <article class="seo-faq-card">
+        <h2>Free username maker — common questions</h2>
+        <h3>What is a username maker?</h3>
+        <p>A username maker helps you create unique handles for profiles and accounts. TagMint generates fresh names every click instead of recycling the same list.</p>
+        <h3>Is TagMint a username generator?</h3>
+        <p>Yes. TagMint is a free online username generator and username maker. Pick a style, optionally add a seed word, and get 16 name ideas instantly.</p>
+        <h3>How is TagMint different from other username generators?</h3>
+        <p>Most sites shuffle a fixed word list. TagMint builds new combinations on the fly, filters low-quality patterns, and includes Seed Mode — enter any word and get variations built around it.</p>
+        <h3>Do I need an account?</h3>
+        <p>No. TagMint is free with no signup. Generate, copy, and use your username anywhere.</p>
+      </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">TagMint — free username generator</div>
+    <div class="container">TagMint — free username maker &amp; generator</div>
   </footer>
 
   <input type="hidden" id="style" value="gaming">
@@ -489,7 +687,8 @@
     const codas = ["n", "r", "x", "l", "s", "k", "m", "v", "th", "sh", "ch", "z", "t", "d", ""];
 
     const recentNames = [];
-    const MAX_RECENT = 60;
+    const MAX_RECENT = 150;
+    const BATCH_SIZE = 16;
 
     function pick(arr) {
       return arr[Math.floor(Math.random() * arr.length)];
@@ -572,7 +771,34 @@
       return blendWords(b, pick(p.starts));
     }
 
-    function generateOne(style, length, separator, useNumbers) {
+    function getSeed() {
+      const raw = document.getElementById("seed-word").value.trim().toLowerCase();
+      const clean = raw.replace(/[^a-z]/g, "");
+      return clean.length >= 2 ? clean.slice(0, 14) : "";
+    }
+
+    function generateFromSeed(seed, style, separator, useNumbers) {
+      const p = parts[style] || parts.gaming;
+      const modes = [
+        () => blendWords(seed, pick(p.ends)),
+        () => blendWords(pick(p.starts), seed),
+        () => joinParts(seed, pick(p.mids), separator),
+        () => joinParts(pick(p.starts), seed, separator),
+        () => seed + pick(p.ends).slice(0, randInt(2, 4)),
+        () => pick(p.mids) + seed,
+      ];
+      let name = pick(modes)();
+      name = formatName(name, style);
+      if (useNumbers && Math.random() < 0.35) name += subtleNumber();
+      return name;
+    }
+
+    function generateOne(style, length, separator, useNumbers, seed) {
+      if (seed && Math.random() < 0.55) {
+        const seeded = generateFromSeed(seed, style, separator, useNumbers);
+        if (seeded && !isCringe(seeded)) return seeded;
+      }
+
       const roll = Math.random();
       let name = "";
 
@@ -603,11 +829,11 @@
       return name;
     }
 
-    function generateBatch(count, style, length, separator, useNumbers) {
+    function generateBatch(count, style, length, separator, useNumbers, seed) {
       const set = new Set();
       let attempts = 0;
-      while (set.size < count && attempts < count * 120) {
-        const candidate = generateOne(style, length, separator, useNumbers);
+      while (set.size < count && attempts < count * 150) {
+        const candidate = generateOne(style, length, separator, useNumbers, seed);
         if (!isCringe(candidate) && !wasRecentlyUsed(candidate)) {
           set.add(candidate);
           rememberName(candidate);
@@ -645,10 +871,14 @@
       const length = document.getElementById("length").value;
       const separator = document.getElementById("separator").value;
       const useNumbers = document.getElementById("numbers").checked;
-      renderUsernames(generateBatch(8, style, length, separator, useNumbers));
+      const seed = getSeed();
+      renderUsernames(generateBatch(BATCH_SIZE, style, length, separator, useNumbers, seed));
     }
 
     document.getElementById("generate-btn").addEventListener("click", runGenerate);
+    document.getElementById("seed-word").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") runGenerate();
+    });
 
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
